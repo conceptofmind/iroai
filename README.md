@@ -19,5 +19,5 @@ Options (defaults shown):
 - `--merge 0.04` make similar colors in different ramps identical (off by default)
 - `--range 0.2 0.96` lightness range (`1` = pure white top)
 - `--tint 0.03` warm/cool cast on grays
-- `-o palette` writes `palette.png`, `.gpl`, `.hex`, `.aseprite`
-- `--scale 16` swatch size in the PNG
+- `-o palette` output path, e.g. `out/forest` or `out/` (folders are created); writes `.png`, `.gpl`, `.hex`, `.aseprite`
+- `--scale 16` swatch size in the PNG# iroai
