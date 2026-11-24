@@ -128,6 +128,7 @@ def save_ase(path, ramps, pal, name):
 
 
 def save(ramps, out, scale):
+    Path(out).parent.mkdir(parents=True, exist_ok=True)
     arr = np.array(ramps, np.uint8)
     Image.fromarray(arr).resize((arr.shape[1] * scale, arr.shape[0] * scale), Image.Resampling.NEAREST).save(f'{out}.png')
     hexes = [[f'{r:02x}{g:02x}{b:02x}' for r, g, b in row] for row in ramps]
@@ -139,4 +140,4 @@ def save(ramps, out, scale):
     tty = sys.stdout.isatty()
     for row, hr in zip(ramps, hexes):
         print(' '.join((f'\x1b[48;2;{r};{g};{b}m  \x1b[0m' if tty else '') + h for (r, g, b), h in zip(row, hr)))
-    print(f'{len(uniq)} colors')
+    print(f'{len(uniq)} colors -> {out}.png .gpl .hex .aseprite')

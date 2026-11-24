@@ -2,13 +2,13 @@ Generate hue-shifted pixel-art color ramps from hex colors or a reference image.
 
 Installation:
 ```bash
-uv pip install hueshift-pixel
+uv pip install iroai
 ```
 
 Usage:
 ```bash
-uv run hueshift 3a7bd5 e0533a [options]
-uv run hueshift input.png [options]
+uv run iroai 3a7bd5 e0533a [options]
+uv run iroai input.png [options]
 ```
 
 Options (defaults shown):

@@ -1,4 +1,5 @@
 import argparse
+import os
 import re
 from pathlib import Path
 
@@ -27,7 +28,8 @@ def main():
                    help='lightness range 0-1; 1 = pure white top')
     p.add_argument('--merge', type=float, default=0, metavar='TOL',
                    help='make similar colors in different ramps identical (OKLab distance, e.g. 0.04)')
-    p.add_argument('-o', '--out', default='palette', help='output name; writes .png .gpl .hex .aseprite')
+    p.add_argument('-o', '--out', default='palette',
+                   help='output path, e.g. forest, out/forest or out/ (folders are created); writes .png .gpl .hex .aseprite')
     p.add_argument('--scale', type=int, default=16, help='swatch size in the PNG')
     a = p.parse_args()
     image = len(a.src) == 1 and Path(a.src[0]).is_file()
@@ -45,7 +47,7 @@ def main():
     ramps, bs = zip(*(ramp(L, z, a.steps, lh, sh, a.shift, a.tint, *a.range) for L, z in bases))
     if a.merge > 0:
         ramps = merge(ramps, a.merge, {k * a.steps + b for k, b in enumerate(bs)})
-    save(ramps, a.out, a.scale)
+    save(ramps, str(Path(a.out, 'palette')) if a.out.endswith(('/', os.sep)) else a.out, a.scale)
 
 
 if __name__ == '__main__':
